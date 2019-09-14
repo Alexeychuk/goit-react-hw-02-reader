@@ -14,18 +14,14 @@ export default class Reader extends Component {
     };
   }
 
-  decreasePage = () => {
-    this.setState(prevState => {
-      if (prevState === 0) return { currentPage: prevState.currentPage };
-      return {
-        currentPage: prevState.currentPage - 1,
-      };
-    });
-  };
+  handlePage = e => {
+    const { name } = e.target;
 
-  increasePage = () => {
     this.setState(prevState => ({
-      currentPage: prevState.currentPage + 1,
+      currentPage:
+        name === 'increase'
+          ? prevState.currentPage + 1
+          : prevState.currentPage - 1,
     }));
   };
 
@@ -38,8 +34,7 @@ export default class Reader extends Component {
         <Publication item={items[currentPage]} />
         <Counter currentPage={currentPage} length={items.length} />
         <Controls
-          decreasePage={this.decreasePage}
-          increasePage={this.increasePage}
+          handlePage={this.handlePage}
           length={items.length}
           currentPage={currentPage}
         />

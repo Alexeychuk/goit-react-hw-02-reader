@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Controls.module.css';
 
-const Controls = ({ increasePage, decreasePage, length, currentPage }) => {
+const Controls = ({ handlePage, length, currentPage }) => {
   return (
     <section className={styles.controls}>
       <button
         type="button"
         name="decrease"
         className={styles.button}
-        onClick={decreasePage}
+        onClick={handlePage}
         disabled={currentPage === 0}
       >
         Назад
@@ -18,7 +18,7 @@ const Controls = ({ increasePage, decreasePage, length, currentPage }) => {
         type="button"
         name="increase"
         className={styles.button}
-        onClick={increasePage}
+        onClick={handlePage}
         disabled={currentPage + 1 === length}
       >
         Вперед
@@ -28,8 +28,7 @@ const Controls = ({ increasePage, decreasePage, length, currentPage }) => {
 };
 
 Controls.propTypes = {
-  increasePage: PropTypes.func.isRequired,
-  decreasePage: PropTypes.func.isRequired,
+  handlePage: PropTypes.func.isRequired,
   length: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
 };
